@@ -20,6 +20,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     
+    
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
         
         let currentQuestion = questions[currentQuestionIndex]
