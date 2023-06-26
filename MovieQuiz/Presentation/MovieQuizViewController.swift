@@ -14,7 +14,7 @@ final class MovieQuizViewController: UIViewController {
         
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
-        
+        currentQuestionIndex += 1
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
         
     }
@@ -25,6 +25,7 @@ final class MovieQuizViewController: UIViewController {
         
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
+        currentQuestionIndex += 1
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
@@ -35,7 +36,7 @@ final class MovieQuizViewController: UIViewController {
     
     
     private func showNextQuestionOrResults() {
-        if currentQuestionIndex == questions.count - 1 {
+        if currentQuestionIndex == questions.count {
             let text = "Ваш результат: \(correctAnswers)/10"
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
@@ -43,7 +44,7 @@ final class MovieQuizViewController: UIViewController {
                 buttonText: "Сыграть ещё раз")
             show(quiz: viewModel)
         } else {
-            currentQuestionIndex += 1
+          //  currentQuestionIndex += 1
             let nextQuestion = questions[currentQuestionIndex]
             let viewModel = convert(model: nextQuestion)
             
@@ -119,7 +120,7 @@ final class MovieQuizViewController: UIViewController {
     
     
     private let questions: [QuizQuestion] = [
-        QuizQuestion(image: "The GodFather",
+        QuizQuestion(image: "The Godfather",
                      text: "Рейтинг этого фильма больше чем 6?",
                      correctAnswer: true),
         QuizQuestion(image: "The Dark Knight",
@@ -167,7 +168,7 @@ final class MovieQuizViewController: UIViewController {
         let questionStep = QuizStepViewModel(
             image: UIImage(named: model.image) ?? UIImage(),
             question: model.text,
-            questionNumber: "\(currentQuestionIndex)/\(questions.count)")
+            questionNumber: "\(currentQuestionIndex + 1)/\(questions.count)")
         return questionStep
     }
 
