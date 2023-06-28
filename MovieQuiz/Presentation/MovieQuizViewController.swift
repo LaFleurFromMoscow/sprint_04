@@ -7,28 +7,30 @@ final class MovieQuizViewController: UIViewController {
         super.viewDidLoad()
         showNextQuestionOrResults()
     }
+    
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        
-        
-        
-        
+
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
         currentQuestionIndex += 1
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-        
     }
     
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        
+
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
         currentQuestionIndex += 1
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+
     }
     
+    
+    @IBOutlet weak var noButton: UIButton!
+    
+    @IBOutlet weak var yesButton: UIButton!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
@@ -44,17 +46,15 @@ final class MovieQuizViewController: UIViewController {
                 buttonText: "Сыграть ещё раз")
             show(quiz: viewModel)
         } else {
-          //  currentQuestionIndex += 1
             let nextQuestion = questions[currentQuestionIndex]
             let viewModel = convert(model: nextQuestion)
-            
             show(quiz: viewModel)
             
         }
- 
+        yesButton.isEnabled = true
+        noButton.isEnabled = true
     }
-    
-    
+   
     
     private func show(quiz result: QuizResultsViewModel) {
         let alert = UIAlertController(
@@ -106,6 +106,8 @@ final class MovieQuizViewController: UIViewController {
                 self.showNextQuestionOrResults()
             self.imageView.layer.borderWidth = 0
             }
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
         }
     
     
