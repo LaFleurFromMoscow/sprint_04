@@ -16,7 +16,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter = AlertPresenterImpl(viewController: self)
         questionFactory?.requestNextQuestion()
         statisticService = StatisticServiceImplementation()
-        
     }
     
     func didReceiveNextQuestion(question: QuizQuestion?) {
