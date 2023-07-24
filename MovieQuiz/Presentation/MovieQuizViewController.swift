@@ -138,7 +138,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     
-    
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
     
